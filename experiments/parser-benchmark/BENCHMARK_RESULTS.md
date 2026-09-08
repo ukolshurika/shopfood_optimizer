@@ -41,6 +41,17 @@ This round used the same 16 cases and `parser_v1` prompt. DeepSeek Pro used the 
 
 The current winner remains the regular Qwen baseline at `0.813` exact match with much lower latency. DeepSeek Pro is a viable quality candidate, but not an improvement on this sample and is substantially slower. The YandexGPT Pro run indicates a transport/output compatibility problem rather than a useful quality signal.
 
+## Fixed Yandex/Qwen live round
+
+After correcting Yandex model URIs and the Qwen reasoning parameter, both endpoints produced usable responses.
+
+| Модель | Schema | Item recall | Item precision | Quantity value | Quantity unit | Package semantics | Exact order | Critical errors | P95, ms |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| YandexGPT Pro (`gpt://.../yandexgpt/latest`) | 1.000 | 1.000 | 1.000 | 0.906 | 0.906 | 0.938 | 0.813 | 0.162 | 3,667 |
+| Qwen 235B (`qwen3-235b-a22b-fp8/latest`, `reasoning_effort=low`) | 1.000 | 1.000 | 1.000 | 0.917 | 0.938 | 0.917 | 0.750 | 0.216 | 7,362 |
+
+YandexGPT Pro now matches the baseline Qwen on exact order match and is faster in this run. Qwen 235B is valid and operational, but did not outperform the smaller Qwen baseline on this dataset.
+
 ## Source Artifacts
 
 Detailed raw responses and per-case evaluations remain in the ignored local directories:

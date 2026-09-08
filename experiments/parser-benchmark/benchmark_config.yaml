@@ -50,7 +50,7 @@ providers:
       cached_input_per_1m: null
       output_per_1m: null
     request_params:
-      reasoning_effort: none
+      reasoning_effort: low
   qwen:
     enabled: true
     source: yandex_ai_studio
