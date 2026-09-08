@@ -41,8 +41,8 @@ providers:
     prompt_variants:
     - parser_v1
     response_modes:
-      production: json_schema
-      parity: json_schema
+      production: text_json
+      parity: text_json
     pricing:
       currency: RUB
       effective_date: null
@@ -83,8 +83,8 @@ providers:
     prompt_variants:
     - parser_v1
     response_modes:
-      production: json_schema
-      parity: json_schema
+      production: text_json
+      parity: text_json
     pricing:
       currency: RUB
       effective_date: null

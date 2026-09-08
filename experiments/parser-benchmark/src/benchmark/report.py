@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+from collections import Counter
 from pathlib import Path
 from statistics import mean
 from typing import Any
@@ -20,6 +21,7 @@ def aggregate_evaluations(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "package_semantics_accuracy": 0.0,
             "whole_order_exact_match": 0.0,
             "critical_error_rate": 0.0,
+            "critical_error_counts": {},
             "p95_latency_ms": None,
             "total_cost_usd": None,
             "mean_cost_per_order": None,
@@ -27,6 +29,7 @@ def aggregate_evaluations(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "cost_per_1k_exact_matches": None,
         }
     total_critical = sum(len(row["critical_errors"]) for row in rows)
+    critical_counts = Counter(error for row in rows for error in row["critical_errors"])
     total_gold = sum(row["gold_items"] for row in rows)
     costs = [row["cost_usd"] for row in rows if row.get("cost_usd") is not None]
     exact_matches = sum(row["whole_order_exact_match"] for row in rows)
@@ -41,6 +44,7 @@ def aggregate_evaluations(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "package_semantics_accuracy": mean(row["package_semantics_accuracy"] for row in rows),
         "whole_order_exact_match": mean(row["whole_order_exact_match"] for row in rows),
         "critical_error_rate": total_critical / total_gold if total_gold else 0.0,
+        "critical_error_counts": dict(sorted(critical_counts.items())),
         "p95_latency_ms": _percentile([row["latency_ms"] for row in rows if row.get("latency_ms") is not None], 95),
         "total_cost_usd": total_cost,
         "mean_cost_per_order": total_cost / count if total_cost is not None and count else None,

@@ -39,12 +39,12 @@ YANDEX_API_KEY=
 YANDEX_FOLDER_ID=
 YANDEX_BASE_URL=https://ai.api.cloud.yandex.net/v1
 YANDEX_QWEN_MODEL=gpt://<folder_ID>/qwen3.6-35b-a3b
-YANDEX_QWEN_STRONG_MODEL=gpt://<folder_ID>/<stronger-qwen-model>
+YANDEX_QWEN_STRONG_MODEL=gpt://<folder_ID>/qwen3-235b-a22b-fp8/latest
 YANDEXGPT_LITE_MODEL=gpt://<folder_ID>/yandexgpt-5-lite
-YANDEXGPT_PRO_MODEL=gpt://<folder_ID>/yandexgpt-5-pro
+YANDEXGPT_PRO_MODEL=gpt://<folder_ID>/yandexgpt/latest
 ```
 
-Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`. YandexGPT Lite 5 задается URI `gpt://<folder_ID>/yandexgpt-5-lite`, а Pro подключается через `YANDEXGPT_PRO_MODEL`. Для `qwen_strong` укажите URI доступной в вашем каталоге крупной Qwen-модели.
+Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`. YandexGPT Lite 5 задается URI `gpt://<folder_ID>/yandexgpt-5-lite`, а Pro подключается через `YANDEXGPT_PRO_MODEL`. Для `qwen_strong` используется URI `gpt://<folder_ID>/qwen3-235b-a22b-fp8/latest`.
 
 ## Live API
 
