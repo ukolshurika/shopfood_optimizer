@@ -1,0 +1,144 @@
+{
+  "$defs": {
+    "ProductAttribute": {
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "value"
+      ],
+      "title": "ProductAttribute",
+      "type": "object"
+    },
+    "ShoppingItem": {
+      "additionalProperties": false,
+      "properties": {
+        "product": {
+          "title": "Product",
+          "type": "string"
+        },
+        "brand": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Brand"
+        },
+        "quantity_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quantity Value"
+        },
+        "quantity_unit": {
+          "anyOf": [
+            {
+              "enum": [
+                "g",
+                "kg",
+                "ml",
+                "l",
+                "pcs"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Quantity Unit"
+        },
+        "package_count": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Package Count"
+        },
+        "package_size_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Package Size Value"
+        },
+        "package_size_unit": {
+          "anyOf": [
+            {
+              "enum": [
+                "g",
+                "kg",
+                "ml",
+                "l",
+                "pcs"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Package Size Unit"
+        },
+        "attributes": {
+          "items": {
+            "$ref": "#/$defs/ProductAttribute"
+          },
+          "title": "Attributes",
+          "type": "array"
+        }
+      },
+      "required": [
+        "product"
+      ],
+      "title": "ShoppingItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "items": {
+      "items": {
+        "$ref": "#/$defs/ShoppingItem"
+      },
+      "title": "Items",
+      "type": "array"
+    }
+  },
+  "required": [
+    "items"
+  ],
+  "title": "ShoppingList",
+  "type": "object"
+}

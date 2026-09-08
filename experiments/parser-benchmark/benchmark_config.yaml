@@ -1,0 +1,95 @@
+benchmark:
+  max_output_tokens: 1200
+  default_runs: 1
+  stability_runs: 5
+  timeout_seconds: 60
+  quality_gates:
+    schema_valid_rate: 0.995
+    item_recall: 0.99
+    item_precision: 0.99
+    quantity_value_accuracy: 0.985
+    quantity_unit_accuracy: 0.985
+    package_semantics_accuracy: 0.99
+    critical_error_rate: 0.005
+    whole_order_exact_match: 0.95
+providers:
+  openai:
+    enabled: false
+    model_env: OPENAI_MODEL
+    api_key_env: OPENAI_API_KEY
+    base_url_env: OPENAI_BASE_URL
+    prompt_variants:
+    - parser_v1
+    - parser_short_v1
+    response_modes:
+      production: json_schema
+      parity: json_object
+    pricing:
+      currency: USD
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
+  qwen:
+    enabled: true
+    source: yandex_ai_studio
+    model_env: YANDEX_QWEN_MODEL
+    api_key_env: YANDEX_API_KEY
+    base_url_env: YANDEX_BASE_URL
+    project_env: YANDEX_FOLDER_ID
+    auth_scheme: yandex_api_key
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: text_json
+      parity: text_json
+    pricing:
+      currency: RUB
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
+    request_params:
+      reasoning_effort: none
+  deepseek:
+    enabled: true
+    model_env: DEEPSEEK_MODEL
+    api_key_env: DEEPSEEK_API_KEY
+    base_url_env: DEEPSEEK_BASE_URL
+    auth_scheme: bearer
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_object
+      parity: json_object
+    pricing:
+      currency: USD
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
+  gigachat_freemium:
+    enabled: true
+    source: sber_freemium
+    model_env: GIGACHAT_MODEL
+    api_key_env: GIGACHAT_CREDENTIALS
+    base_url_env: GIGACHAT_BASE_URL
+    auth_scheme: gigachat_oauth
+    scope_env: GIGACHAT_SCOPE
+    oauth_url_env: GIGACHAT_OAUTH_URL
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_schema
+      parity: json_schema
+    pricing:
+      currency: RUB
+      effective_date: 2026-08-31 Freemium quota for personal non-commercial use
+      input_per_1m: 0.0
+      cached_input_per_1m: 0.0
+      output_per_1m: 0.0
+    quota:
+      mode: freemium
+      scope: GIGACHAT_API_PERS
+      non_commercial_only: true
+      single_thread_generation: true

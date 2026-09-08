@@ -1,0 +1,21 @@
+[project]
+name = "parser-benchmark"
+version = "0.1.0"
+description = "Benchmark for parsing Russian grocery shopping lists into ShoppingList JSON."
+requires-python = ">=3.12"
+dependencies = [
+  "pydantic>=2.0",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+test = [
+  "pytest>=8.0",
+]
+
+[project.scripts]
+parser-benchmark = "benchmark.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

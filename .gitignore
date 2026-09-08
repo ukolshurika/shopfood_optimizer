@@ -1,0 +1,8 @@
+# Environment files
+experiments/**/.env
+experiments/parser-benchmark/.env
+.env
+
+# Keep example env files tracked
+!.env.example
+!**/.env.example
