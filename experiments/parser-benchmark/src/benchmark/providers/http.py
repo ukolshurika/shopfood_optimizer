@@ -47,7 +47,8 @@ async def async_post_json(**kwargs: Any) -> tuple[int, dict[str, Any]]:
 
 
 class OpenAIResponsesProvider:
-    def __init__(self, *, api_key: str, model: str, base_url: str, timeout_seconds: int, max_output_tokens: int, auth_scheme: str = "bearer", project_id: str | None = None, request_params: dict[str, Any] | None = None, user_prefix: str = ""):
+    def __init__(self, *, provider: str = "openai", api_key: str, model: str, base_url: str, timeout_seconds: int, max_output_tokens: int, auth_scheme: str = "bearer", project_id: str | None = None, request_params: dict[str, Any] | None = None, user_prefix: str = ""):
+        self.provider = provider
         self.api_key = api_key
         self.model = model
         self.base_url = base_url.rstrip("/")
@@ -100,7 +101,7 @@ class OpenAIResponsesProvider:
             parsed_json = normalize_prediction(parse_json_text(raw_text))
             validation_error = _validation_error(parsed_json)
             return ProviderResult(
-                provider="openai",
+                provider=self.provider,
                 model=self.model,
                 raw_text=raw_text,
                 parsed_json=parsed_json,

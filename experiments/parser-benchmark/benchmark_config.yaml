@@ -30,6 +30,27 @@ providers:
       input_per_1m: null
       cached_input_per_1m: null
       output_per_1m: null
+  qwen_strong:
+    enabled: true
+    source: yandex_ai_studio
+    model_env: YANDEX_QWEN_STRONG_MODEL
+    api_key_env: YANDEX_API_KEY
+    base_url_env: YANDEX_BASE_URL
+    project_env: YANDEX_FOLDER_ID
+    auth_scheme: yandex_api_key
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_schema
+      parity: json_schema
+    pricing:
+      currency: RUB
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
+    request_params:
+      reasoning_effort: none
   qwen:
     enabled: true
     source: yandex_ai_studio
@@ -51,6 +72,25 @@ providers:
       output_per_1m: null
     request_params:
       reasoning_effort: none
+  yandexgpt_pro:
+    enabled: true
+    source: yandex_ai_studio
+    model_env: YANDEXGPT_PRO_MODEL
+    api_key_env: YANDEX_API_KEY
+    base_url_env: YANDEX_BASE_URL
+    project_env: YANDEX_FOLDER_ID
+    auth_scheme: yandex_api_key
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_schema
+      parity: json_schema
+    pricing:
+      currency: RUB
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
   yandexgpt_lite:
     enabled: true
     source: yandex_ai_studio
@@ -70,6 +110,24 @@ providers:
       input_per_1m: null
       cached_input_per_1m: null
       output_per_1m: null
+  deepseek_pro:
+    enabled: true
+    transport: responses
+    model_env: DEEPSEEK_PRO_MODEL
+    api_key_env: DEEPSEEK_API_KEY
+    base_url_env: DEEPSEEK_BASE_URL
+    auth_scheme: bearer
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_schema
+      parity: json_schema
+    pricing:
+      currency: USD
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
   deepseek:
     enabled: true
     model_env: DEEPSEEK_MODEL
@@ -81,6 +139,24 @@ providers:
     response_modes:
       production: json_object
       parity: json_object
+    pricing:
+      currency: USD
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
+  openai_control:
+    enabled: true
+    transport: responses
+    model_env: OPENAI_MODEL
+    api_key_env: OPENAI_API_KEY
+    base_url_env: OPENAI_BASE_URL
+    auth_scheme: bearer
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: json_schema
+      parity: json_schema
     pricing:
       currency: USD
       effective_date: null

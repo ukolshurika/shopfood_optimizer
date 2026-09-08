@@ -29,6 +29,18 @@ The v2 run confirms that shape normalization helps format compliance, but it doe
 - GigaChat returns valid structure, but its semantic accuracy is currently insufficient.
 - YandexGPT Lite frequently returns `attributes` as an object or `null` instead of the required array and is not a candidate for the current parser without a different output strategy.
 
+## Strong-model round
+
+This round used the same 16 cases and `parser_v1` prompt. DeepSeek Pro used the Responses API with strict JSON Schema. YandexGPT Pro and Qwen Strong used the Yandex OpenAI-compatible endpoint.
+
+| Модель | Schema | Item recall | Item precision | Quantity value | Quantity unit | Package semantics | Exact order | Critical errors | P95, ms | Status |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
+| DeepSeek Pro | 0.938 | 0.938 | 0.938 | 0.875 | 0.875 | 0.875 | 0.875 | 0.108 | 15,355 | completed |
+| YandexGPT Pro | 0.375 | 0.375 | 0.218 | 0.313 | 0.292 | 0.198 | 0.000 | 0.946 | 14,923 | completed, weak JSON/semantics |
+| Qwen 235B | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.432 | 148 | not evaluated: HTTP 400 `Failed to get model` |
+
+The current winner remains the regular Qwen baseline at `0.813` exact match with much lower latency. DeepSeek Pro is a viable quality candidate, but not an improvement on this sample and is substantially slower. The YandexGPT Pro run indicates a transport/output compatibility problem rather than a useful quality signal.
+
 ## Source Artifacts
 
 Detailed raw responses and per-case evaluations remain in the ignored local directories:

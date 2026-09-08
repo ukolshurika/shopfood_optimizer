@@ -20,6 +20,7 @@ class ProviderPlan:
     base_url_env: str
     project_env: str | None
     auth_scheme: str
+    transport: str
 
 
 def load_config(path: Path) -> dict[str, Any]:
@@ -49,6 +50,7 @@ def build_plan(config: dict[str, Any], *, mode: str) -> list[ProviderPlan]:
                     base_url_env=provider_config.get("base_url_env", f"{provider_name.upper()}_BASE_URL"),
                     project_env=provider_config.get("project_env"),
                     auth_scheme=provider_config.get("auth_scheme", "bearer"),
+                    transport=provider_config.get("transport", "chat_completions"),
                 )
             )
     return plan

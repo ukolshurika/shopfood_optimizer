@@ -4,11 +4,11 @@
 
 Текущая матрица:
 
-- `qwen` через Yandex AI Studio OpenAI-compatible API;
-- `yandexgpt_lite` через Yandex AI Studio OpenAI-compatible API;
-- `deepseek` через OpenAI-compatible Chat Completions;
+- `qwen` и `qwen_strong` через Yandex AI Studio OpenAI-compatible API;
+- `yandexgpt_lite` и `yandexgpt_pro` через Yandex AI Studio OpenAI-compatible API;
+- `deepseek` через OpenAI-compatible Chat Completions и `deepseek_pro` через Responses API;
 - `gigachat_freemium` через GigaChat API;
-- `openai` отключен в `benchmark_config.yaml`.
+- `openai_control` включен в плане, но запускается только при заполненных `OPENAI_*` env.
 
 Реализовано:
 
@@ -39,10 +39,12 @@ YANDEX_API_KEY=
 YANDEX_FOLDER_ID=
 YANDEX_BASE_URL=https://ai.api.cloud.yandex.net/v1
 YANDEX_QWEN_MODEL=gpt://<folder_ID>/qwen3.6-35b-a3b
+YANDEX_QWEN_STRONG_MODEL=gpt://<folder_ID>/<stronger-qwen-model>
 YANDEXGPT_LITE_MODEL=gpt://<folder_ID>/yandexgpt-5-lite
+YANDEXGPT_PRO_MODEL=gpt://<folder_ID>/yandexgpt-5-pro
 ```
 
-Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`. YandexGPT Lite 5 задается URI `gpt://<folder_ID>/yandexgpt-5-lite`.
+Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`. YandexGPT Lite 5 задается URI `gpt://<folder_ID>/yandexgpt-5-lite`, а Pro подключается через `YANDEXGPT_PRO_MODEL`. Для `qwen_strong` укажите URI доступной в вашем каталоге крупной Qwen-модели.
 
 ## Live API
 

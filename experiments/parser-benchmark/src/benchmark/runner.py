@@ -40,8 +40,9 @@ def build_provider(plan: ProviderPlan, config: dict[str, Any]):
             max_output_tokens=max_output_tokens,
             verify_ssl=os.environ.get("GIGACHAT_VERIFY_SSL", "true").lower() != "false",
         )
-    if plan.provider == "openai":
+    if provider_config.get("transport") == "responses":
         return OpenAIResponsesProvider(
+            provider=plan.provider,
             api_key=api_key,
             model=model,
             base_url=base_url,
