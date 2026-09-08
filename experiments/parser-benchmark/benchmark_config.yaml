@@ -51,6 +51,25 @@ providers:
       output_per_1m: null
     request_params:
       reasoning_effort: none
+  yandexgpt_lite:
+    enabled: true
+    source: yandex_ai_studio
+    model_env: YANDEXGPT_LITE_MODEL
+    api_key_env: YANDEX_API_KEY
+    base_url_env: YANDEX_BASE_URL
+    project_env: YANDEX_FOLDER_ID
+    auth_scheme: yandex_api_key
+    prompt_variants:
+    - parser_v1
+    response_modes:
+      production: text_json
+      parity: text_json
+    pricing:
+      currency: RUB
+      effective_date: null
+      input_per_1m: null
+      cached_input_per_1m: null
+      output_per_1m: null
   deepseek:
     enabled: true
     model_env: DEEPSEEK_MODEL

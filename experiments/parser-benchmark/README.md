@@ -5,7 +5,9 @@
 Текущая матрица:
 
 - `qwen` через Yandex AI Studio OpenAI-compatible API;
+- `yandexgpt_lite` через Yandex AI Studio OpenAI-compatible API;
 - `deepseek` через OpenAI-compatible Chat Completions;
+- `gigachat_freemium` через GigaChat API;
 - `openai` отключен в `benchmark_config.yaml`.
 
 Реализовано:
@@ -28,7 +30,7 @@ PYTHONPATH=src python3 -m benchmark.cli dry-run --dataset data/dev.jsonl
 PYTHONPATH=src python3 -m benchmark.cli evaluate-fixture --dataset data/dev.jsonl
 ```
 
-## Qwen через Yandex
+## Yandex AI Studio
 
 `.env` должен содержать:
 
@@ -37,9 +39,10 @@ YANDEX_API_KEY=
 YANDEX_FOLDER_ID=
 YANDEX_BASE_URL=https://ai.api.cloud.yandex.net/v1
 YANDEX_QWEN_MODEL=gpt://<folder_ID>/qwen3.6-35b-a3b
+YANDEXGPT_LITE_MODEL=gpt://<folder_ID>/yandexgpt-5-lite
 ```
 
-Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`.
+Yandex AI Studio использует OpenAI-compatible `/chat/completions`, заголовок `Authorization: Api-Key ...` и `OpenAI-Project: <folder_ID>`. YandexGPT Lite 5 задается URI `gpt://<folder_ID>/yandexgpt-5-lite`.
 
 ## Live API
 
@@ -60,7 +63,7 @@ GIGACHAT_CREDENTIALS=<authorization key из личного кабинета>
 GIGACHAT_SCOPE=GIGACHAT_API_PERS
 GIGACHAT_BASE_URL=https://api.giga.chat/v1
 GIGACHAT_OAUTH_URL=https://ngw.devices.sberbank.ru:9443/api/v2/oauth
-GIGACHAT_MODEL=GigaChat
+GIGACHAT_MODEL=GigaChat-2
 GIGACHAT_VERIFY_SSL=true
 ```
 
