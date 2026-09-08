@@ -13,6 +13,7 @@ from typing import Any
 from pydantic import ValidationError
 
 from benchmark.json_utils import parse_json_text
+from benchmark.json_utils import normalize_prediction
 from benchmark.models import ShoppingList
 from benchmark.pricing import Usage
 from benchmark.providers.base import ProviderResult
@@ -80,7 +81,7 @@ class GigaChatProvider:
             latency_ms = (time.perf_counter() - started) * 1000
             choice = (raw.get("choices") or [{}])[0]
             raw_text = ((choice.get("message") or {}).get("content") or "").strip()
-            parsed_json = parse_json_text(raw_text)
+            parsed_json = normalize_prediction(parse_json_text(raw_text))
             ShoppingList.model_validate(parsed_json)
             return ProviderResult(
                 provider="gigachat_freemium",

@@ -9,7 +9,7 @@ from typing import Any
 
 from pydantic import ValidationError
 
-from benchmark.json_utils import parse_json_text
+from benchmark.json_utils import normalize_prediction, parse_json_text
 from benchmark.models import ShoppingList
 from benchmark.pricing import Usage
 from benchmark.providers.base import ProviderResult
@@ -97,7 +97,7 @@ class OpenAIResponsesProvider:
             )
             latency_ms = (time.perf_counter() - started) * 1000
             raw_text = _responses_output_text(raw)
-            parsed_json = parse_json_text(raw_text)
+            parsed_json = normalize_prediction(parse_json_text(raw_text))
             validation_error = _validation_error(parsed_json)
             return ProviderResult(
                 provider="openai",
@@ -195,7 +195,7 @@ class ChatCompletionsProvider:
             latency_ms = (time.perf_counter() - started) * 1000
             choice = (raw.get("choices") or [{}])[0]
             raw_text = ((choice.get("message") or {}).get("content") or "").strip()
-            parsed_json = parse_json_text(raw_text)
+            parsed_json = normalize_prediction(parse_json_text(raw_text))
             validation_error = _validation_error(parsed_json)
             return ProviderResult(
                 provider=self.provider,

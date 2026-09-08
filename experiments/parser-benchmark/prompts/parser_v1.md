@@ -62,4 +62,17 @@
 
 12. Если информация отсутствует, используй null или пустой список вместо предположения.
 
+Контрольные примеры:
+
+Ввод: "2 молока, 2 литра молока"
+JSON: {"items": [{"product": "молоко", "brand": null, "quantity_value": null, "quantity_unit": null, "package_count": 2, "package_size_value": null, "package_size_unit": null, "attributes": []}, {"product": "молоко", "brand": null, "quantity_value": 2, "quantity_unit": "l", "package_count": null, "package_size_value": null, "package_size_unit": null, "attributes": []}]}
+
+Ввод: "молоко Магнит, молоко Простоквашино"
+JSON: {"items": [{"product": "молоко", "brand": "Магнит", "quantity_value": null, "quantity_unit": null, "package_count": null, "package_size_value": null, "package_size_unit": null, "attributes": []}, {"product": "молоко", "brand": "Простоквашино", "quantity_value": null, "quantity_unit": null, "package_count": null, "package_size_value": null, "package_size_unit": null, "attributes": []}]}
+
+Ввод: "творог 5% и питьевой йогурт"
+JSON: {"items": [{"product": "творог", "brand": null, "quantity_value": null, "quantity_unit": null, "package_count": null, "package_size_value": null, "package_size_unit": null, "attributes": [{"key": "fat_percent", "value": "5"}]}, {"product": "йогурт", "brand": null, "quantity_value": null, "quantity_unit": null, "package_count": null, "package_size_value": null, "package_size_unit": null, "attributes": [{"key": "type", "value": "питьевой"}]}]}
+
+Во всех ответах attributes всегда является массивом объектов с ключами key и value. Не возвращай attributes как объект или null.
+
 Верни только JSON.
