@@ -2,6 +2,22 @@
 
 Последнее сравнение выполнено на `data/dev.jsonl` из 16 кейсов, режим `production`, по одному запросу на кейс.
 
+## Unified Latest Results
+
+В таблице оставлен последний содержательный прогон каждой модельной версии на одном и том же датасете из 16 кейсов. Ошибочный запуск Qwen 235B с недействительным URI не включён.
+
+| Модель | Последний run | Schema | Recall | Precision | Qty value | Qty unit | Package | Exact order | Critical error rate | P95, ms | Стоимость |
+|---|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Qwen 3.6 35B | `qwen_dev_16_v2` | 1.000 | 1.000 | 1.000 | 0.938 | 0.938 | 0.938 | 0.813 | 0.135 | 1,643 | n/a |
+| Qwen 3 235B | `qwen_strong_dev_16_fixed_v2` | 1.000 | 1.000 | 1.000 | 0.917 | 0.938 | 0.917 | 0.750 | 0.216 | 7,362 | n/a |
+| DeepSeek Flash | `deepseek_dev_16_v2` | 0.938 | 0.938 | 0.938 | 0.875 | 0.875 | 0.875 | 0.875 | 0.108 | 8,580 | n/a |
+| DeepSeek Pro | `deepseek_pro_dev_16` | 0.938 | 0.938 | 0.938 | 0.875 | 0.875 | 0.875 | 0.875 | 0.108 | 15,355 | n/a |
+| YandexGPT Lite | `yandexgpt_lite_dev_16_v2` | 0.938 | 0.938 | 0.938 | 0.583 | 0.698 | 0.615 | 0.250 | 0.838 | 4,290 | n/a |
+| YandexGPT Pro | `yandexgpt_pro_dev_16_fixed` | 1.000 | 1.000 | 1.000 | 0.906 | 0.906 | 0.938 | 0.813 | 0.162 | 3,667 | n/a |
+| GigaChat Freemium | `gigachat_dev_16_v2` | 1.000 | 1.000 | 1.000 | 0.792 | 0.854 | 0.740 | 0.188 | 0.892 | 3,440 | $0 quota |
+
+`Critical error rate` is the total number of critical error events divided by the total number of gold items. Detailed error types are in each run's `summary.json` under `critical_error_counts`, and case-level lists are in `evaluated_cases.jsonl`.
+
 | Провайдер | Schema | Item recall | Item precision | Quantity value | Quantity unit | Package semantics | Exact order | Critical errors | P95, ms | Cost |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | Qwen | 1.000 | 1.000 | 1.000 | 0.938 | 0.938 | 0.938 | 0.813 | 0.135 | 1,946 | n/a |
